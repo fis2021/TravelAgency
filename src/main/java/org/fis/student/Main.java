@@ -15,11 +15,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        initDirectory();
+        //initDirectory();
         UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-        primaryStage.setTitle("Registration");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root, 600, 460));
         primaryStage.show();
     }
 
