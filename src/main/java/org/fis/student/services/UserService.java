@@ -2,7 +2,7 @@ package org.fis.student.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.fis.student.exceptions.UsernameAlreadyExistsException;
+import org.fis.student.exceptions.*;
 import org.fis.student.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -16,22 +16,71 @@ public class UserService {
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
-                .filePath(FileSystemService.getPathToFile("registration-example.db").toFile())
+                .filePath(FileSystemService.getPathToFile("travel-agency-users.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role, String name, String address, String email, String phone, String password2) throws UsernameAlreadyExistsException, EmailAlreadyUsedException, WrongPasswordConfirmationException, EmptyTextfieldsException {
+        checkEmptyTextfields(username,password,role,name,address,email,phone);
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
+        checkUsedEmail(email);
+        checkPasswordConfirmation(password,password2);
+        userRepository.insert(new User(username, encodePassword(username, password), role, name, address, phone, email));
     }
 
+    private static void checkEmptyTextfields(String username, String password, String role, String name, String address, String email, String phone) throws EmptyTextfieldsException{
+        if( Objects.equals(username,""))
+            throw new EmptyTextfieldsException();
+        else if( Objects.equals(password,""))
+            throw new EmptyTextfieldsException();
+        else if( !( Objects.equals(role,"Travel Agency") || Objects.equals(role,"Customer") ))
+            throw new EmptyTextfieldsException();
+        else if( Objects.equals(name,""))
+            throw new EmptyTextfieldsException();
+        else if( Objects.equals(address,""))
+            throw new EmptyTextfieldsException();
+        else if( Objects.equals(email,""))
+            throw new EmptyTextfieldsException();
+        else if( Objects.equals(phone,""))
+            throw new EmptyTextfieldsException();
+    }
+    private static void checkPasswordConfirmation(String password, String password2) throws WrongPasswordConfirmationException {
+        if( !Objects.equals(password,password2))
+            throw new WrongPasswordConfirmationException();
+    }
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+    private static void checkUsedEmail(String email) throws EmailAlreadyUsedException{
+        for (User user : userRepository.find()) {
+            if (Objects.equals(email, user.getEmail()))
+                throw new EmailAlreadyUsedException();
+        }
+    }
+
+    public static void checkUserCredentials(String username,String password,String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
+        int oku=0,okp=0,okr=0;
+        for(User user : userRepository.find()){
+            if(Objects.equals(username,user.getUsername())) {
+                oku = 1;
+                if(Objects.equals(role,user.getRole()))
+                    okr = 1;
+            }
+            if(Objects.equals(encodePassword(username,password),user.getPassword()))
+                okp = 1;
+        }
+        if( oku == 0 )
+            throw new UsernameDoesNotExistException(username);
+        if( okr == 0 )
+            throw new WrongRoleException();
+        if ( okp == 0 )
+            throw new WrongPasswordException();
+
     }
 
     private static String encodePassword(String salt, String password) {
