@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis.student.controllers.LoginController">
+   <children>
+      <Pane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #DDA0DD;">
+         <children>
+            <ImageView fitHeight="78.0" fitWidth="94.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Text id="title-text" layoutX="223.0" layoutY="49.0" text="Travel Agency">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Label layoutX="157.0" layoutY="156.0" text="Username:" />
+      <TextField fx:id="usernameField" layoutX="262.0" layoutY="152.0" />
+      <Label layoutX="159.0" layoutY="213.0" text="Password:" />
+      <PasswordField fx:id="passwordField" layoutX="262.0" layoutY="209.0" />
+      <Label layoutX="185.0" layoutY="271.0" text="Role:" />
+      <ChoiceBox fx:id="role" layoutX="262.0" layoutY="267.0" prefWidth="150.0" />
+      <Text fx:id="loginUsernameMessage" layoutX="125.0" layoutY="361.0" text="  " />
+      <Button layoutX="316.0" layoutY="382.0" onAction="#goBackToResgisterScene" text="Create one here" />
+      <Button layoutX="366.0" layoutY="315.0" onAction="#handleLoginAction" text="Login" />
+      <Text layoutX="125.0" layoutY="399.0" text="You don't have an account?" />
+   </children>
+</AnchorPane>
