@@ -34,6 +34,7 @@ public class LoginController {
     private String userRole;
     private static String loggedUser;
 
+
     @FXML
     public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
@@ -49,6 +50,11 @@ public class LoginController {
                 window.show();
             }
             else{
+                Parent customerInterface = FXMLLoader.load(getClass().getClassLoader().getResource("customer_trip_page.fxml"));
+                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
+                window.setTitle("Trips Page");
+                window.setScene(new Scene(customerInterface, 600, 460));
+                window.show();
 
             }
         } catch (UsernameDoesNotExistException e) {
@@ -65,5 +71,9 @@ public class LoginController {
         window.setTitle("Registration");
         window.setScene(new Scene(root1, 600, 460));
         window.show();
+    }
+
+    public static String getLoggedUser(){
+        return loggedUser;
     }
 }

@@ -72,6 +72,6 @@ public class Trip {
     }
 
     public String toString() {
-        return destination + " (" + departure_date + " - " + return_date + ") \n" + description + "\n" + price + " " + number_of_free_spots;
+        return destination + " (" + departure_date + " - " + return_date + ") \n" + description + "\n" + "Price: " + price + "\nNumber of free spots: " + number_of_free_spots;
     }
 }

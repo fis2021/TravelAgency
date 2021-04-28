@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.fis.student.services.AdminTripService;
+import org.fis.student.services.CustomerBookingService;
 import org.fis.student.services.FileSystemService;
 import org.fis.student.services.UserService;
 
@@ -19,6 +20,7 @@ public class Main extends Application {
         initDirectory();
         UserService.initDatabase();
         AdminTripService.initDatabase();
+        CustomerBookingService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 600, 460));
