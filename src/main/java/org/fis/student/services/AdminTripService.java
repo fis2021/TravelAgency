@@ -11,6 +11,10 @@ public class AdminTripService {
 
     private static ObjectRepository<Trip> tripRepository;
 
+    public static ObjectRepository<Trip> getTripRepository() {
+        return tripRepository;
+    }
+
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("travel-agency-trips.db").toFile())

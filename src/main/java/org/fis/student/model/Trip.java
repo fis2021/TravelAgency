@@ -1,5 +1,14 @@
 package org.fis.student.model;
 
+import javafx.scene.text.Text;
+
+import javax.swing.*;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.font.TextAttribute;
+import java.text.AttributedString;
+import javafx.scene.text.Font;
+
 public class Trip {
 
     private String destination;
@@ -60,5 +69,9 @@ public class Trip {
         if (price != null ? !price.equals(trip.price) : trip.price != null) return false;
         if (number_of_free_spots != null ? !number_of_free_spots.equals(trip.number_of_free_spots) : trip.number_of_free_spots != null) return false;
         return true;
+    }
+
+    public String toString() {
+        return destination + " (" + departure_date + " - " + return_date + ") \n" + description + "\n" + price + " " + number_of_free_spots;
     }
 }
