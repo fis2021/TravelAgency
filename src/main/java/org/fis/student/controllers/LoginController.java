@@ -31,11 +31,26 @@ public class LoginController {
         role.getItems().addAll("Customer", "Travel Agency");
     }
 
+    private String userRole;
+    private static String loggedUser;
+
     @FXML
-    public void handleLoginAction() {
+    public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
             UserService.checkUserCredentials(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             loginUsernameMessage.setText("Login successfully!");
+            loggedUser = UserService.getLoggedUser(usernameField.getText());
+            userRole = UserService.getUserRole(usernameField.getText());
+            if(userRole.equals("Travel Agency")){
+                Parent adminInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
+                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
+                window.setTitle("Trips Page");
+                window.setScene(new Scene(adminInterface, 600, 460));
+                window.show();
+            }
+            else{
+
+            }
         } catch (UsernameDoesNotExistException e) {
             loginUsernameMessage.setText(e.getMessage());
         } catch (WrongRoleException e){
