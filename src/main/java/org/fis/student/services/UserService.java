@@ -30,6 +30,25 @@ public class UserService {
         userRepository.insert(new User(username, encodePassword(username, password), role, name, address, phone, email));
     }
 
+    public static String getLoggedUser(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                return username;
+        }
+        return "";
+    }
+
+    public static String getUserRole(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                if(Objects.equals(user.getRole(),"Customer"))
+                    return "Customer";
+                else
+                    return "Travel Agency";
+        }
+        return "";
+    }
+
     private static void checkEmptyTextfields(String username, String password, String role, String name, String address, String email, String phone) throws EmptyTextfieldsException{
         if( Objects.equals(username,""))
             throw new EmptyTextfieldsException();
