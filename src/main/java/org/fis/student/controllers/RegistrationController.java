@@ -1,10 +1,16 @@
 package org.fis.student.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.fis.student.exceptions.EmailAlreadyUsedException;
 import org.fis.student.exceptions.EmptyTextfieldsException;
 import org.fis.student.exceptions.UsernameAlreadyExistsException;
@@ -51,5 +57,13 @@ public class RegistrationController {
         } catch (EmailAlreadyUsedException e){
             registrationMessage.setText(e.getMessage());
         }
+    }
+
+    public void goBackToLogin(javafx.event.ActionEvent login)throws Exception{
+        Parent backToLogin = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
+        window.setTitle("Login");
+        window.setScene(new Scene(backToLogin, 600, 460));
+        window.show();
     }
 }
