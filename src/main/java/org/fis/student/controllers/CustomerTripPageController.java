@@ -2,6 +2,7 @@ package org.fis.student.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,6 +36,14 @@ public class CustomerTripPageController {
         Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
         window.setTitle("Book a Trip");
         window.setScene(new Scene(addTripInterface, 600, 460));
+        window.show();
+    }
+
+    public void goToListTripsAction(javafx.event.ActionEvent listTrips) throws Exception{
+        Parent listTripsInterface = FXMLLoader.load(getClass().getClassLoader().getResource("list_customer_trips.fxml"));
+        Stage window = (Stage) ((Node) listTrips.getSource()).getScene().getWindow();;
+        window.setTitle("My trips");
+        window.setScene(new Scene(listTripsInterface, 600, 460));
         window.show();
     }
 }
