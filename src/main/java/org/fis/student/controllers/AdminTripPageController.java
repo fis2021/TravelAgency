@@ -38,4 +38,21 @@ public class AdminTripPageController {
         window.setScene(new Scene(addTripInterface, 600, 460));
         window.show();
     }
+
+    public void goToEditTripAction(javafx.event.ActionEvent addTrip) throws Exception{
+        Parent editTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("edit_trips.fxml"));
+        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        window.setTitle("Edit Trip");
+        window.setScene(new Scene(editTripInterface, 600, 460));
+        window.show();
+    }
+
+    public void goToDeleteTripAction(javafx.event.ActionEvent addTrip) throws Exception{
+        Parent deleteTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("delete_trips.fxml"));
+        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        window.setTitle("Delete Trip");
+        window.setScene(new Scene(deleteTripInterface, 600, 460));
+        window.show();
+    }
+
 }
