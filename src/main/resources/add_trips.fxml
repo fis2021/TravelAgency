@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis.student.controllers.AddTripController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis.student.controllers.AddTripController">
     <children>
         <Pane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #DDA0DD;">
             <children>
@@ -29,7 +29,7 @@
         <Label layoutX="56.0" layoutY="133.0" text="Destination:" />
         <Label layoutX="56.0" layoutY="176.0" text="Departure date:" />
         <Label layoutX="56.0" layoutY="368.0" text="Number of free spots:" />
-        <Button layoutX="457.0" layoutY="398.0" onAction="#handleAddTripAction" text="Add trip" />
+        <Button layoutX="456.0" layoutY="364.0" onAction="#handleAddTripAction" text="Add trip" />
       <Label layoutX="344.0" layoutY="176.0" text="Return date:" />
       <Label layoutX="56.0" layoutY="217.0" text="Description:" />
       <Label layoutX="56.0" layoutY="314.0" text="Price:" />
@@ -39,6 +39,12 @@
       <TextField fx:id="priceField" layoutX="187.0" layoutY="310.0" prefHeight="26.0" prefWidth="130.0" />
       <TextField fx:id="departure_dateField" layoutX="187.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
       <TextField fx:id="return_dateField" layoutX="433.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
-        <Text fx:id="add_tripMessage" layoutX="125.0" layoutY="361.0" text="  " />
+        <Text fx:id="add_tripMessage" layoutX="56.0" layoutY="420.0" text="  " />
+      <Label layoutX="56.0" layoutY="97.0" text="Enter the information below:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="432.0" layoutY="406.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
     </children>
 </AnchorPane>
