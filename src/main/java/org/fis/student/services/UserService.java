@@ -3,6 +3,7 @@ package org.fis.student.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.exceptions.*;
+import org.fis.student.model.Trip;
 import org.fis.student.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -20,6 +21,10 @@ public class UserService {
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+    }
+
+    public static ObjectRepository<User> getUserRepository() {
+        return userRepository;
     }
 
     public static void addUser(String username, String password, String role, String name, String address, String email, String phone, String password2) throws UsernameAlreadyExistsException, EmailAlreadyUsedException, WrongPasswordConfirmationException, EmptyTextfieldsException {
