@@ -1,9 +1,14 @@
 package org.fis.student.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.fis.student.exceptions.DestinationAndDateUsedException;
 import org.fis.student.exceptions.EmptyTextfieldsException;
 import org.fis.student.services.AdminTripService;
@@ -37,5 +42,13 @@ public class AddTripController {
         } catch (DestinationAndDateUsedException e) {
             add_tripMessage.setText(e.getMessage());
         }
+    }
+
+    public void goBackToTripPageAction(javafx.event.ActionEvent addTrip) throws Exception{
+        Parent adminTripPageInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
+        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        window.setTitle("Trips");
+        window.setScene(new Scene(adminTripPageInterface, 600, 460));
+        window.show();
     }
 }
