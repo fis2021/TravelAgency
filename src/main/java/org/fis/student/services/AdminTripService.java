@@ -64,6 +64,13 @@ public class AdminTripService {
         tripRepository.update(eq("destination",destination1), trip_aux);
     }
 
+    public static void deleteTrip(String destination, String departure_date, String return_date) throws EmptyTextfieldsException, DestinationAndDateExistsException{
+        checkEmptyTextFieldsForEdit(destination,departure_date,return_date);
+        checkTripExists(destination,departure_date,return_date);
+
+        tripRepository.remove(eq("destination",destination));
+    }
+
     private static void checkEmptyTextFieldsForEdit(String destination, String departure_date, String return_date) throws EmptyTextfieldsException{
         if (Objects.equals(destination,""))
             throw new EmptyTextfieldsException();

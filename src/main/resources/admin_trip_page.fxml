@@ -33,6 +33,6 @@
          </font>
       </Text>
       <Button layoutX="400.0" layoutY="93.0" onAction="#goToEditTripAction" text="Edit trip" />
-      <Button layoutX="482.0" layoutY="93.0" onAction="#goToDeleteTripAction" text="Delete trip" />
+        <Button layoutX="482.0" layoutY="93.0" onAction="#goToDeleteTripAction" text="Delete trip" />
     </children>
 </AnchorPane>
