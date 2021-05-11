@@ -55,4 +55,11 @@ public class AdminTripPageController {
         window.show();
     }
 
+    public void goToBookedTripsAction(javafx.event.ActionEvent addTrip) throws Exception{
+        Parent deleteTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("list_booked_trips.fxml"));
+        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        window.setTitle("Delete Trip");
+        window.setScene(new Scene(deleteTripInterface, 600, 460));
+        window.show();
+    }
 }
