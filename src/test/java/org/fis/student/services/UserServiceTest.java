@@ -1,10 +1,7 @@
 package org.fis.student.services;
 
 import org.apache.commons.io.FileUtils;
-import org.fis.student.exceptions.EmailAlreadyUsedException;
-import org.fis.student.exceptions.EmptyTextfieldsException;
-import org.fis.student.exceptions.UsernameAlreadyExistsException;
-import org.fis.student.exceptions.WrongPasswordConfirmationException;
+import org.fis.student.exceptions.*;
 import org.fis.student.model.User;
 import org.junit.jupiter.api.*;
 
@@ -130,4 +127,47 @@ class UserServiceTest {
         });
     }
 
+    @Test
+    @DisplayName("Login successfully")
+    void testCheckCredentialsWhenLogin() throws Exception{
+        UserService.addUser("user","user","Customer","User","adresa","user@email.com","0728","user");
+        assertThat(UserService.getAllUsers()).isNotEmpty();
+        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+        User user = UserService.getAllUsers().get(0);
+        assertThat(user).isNotNull();
+        UserService.checkUserCredentials("user","user","Customer");
+    }
+
+    @Test
+    @DisplayName("The username must be correct when login")
+    void testCheckUsernameWhenLogin(){
+        assertThrows(UsernameDoesNotExistException.class, () -> {
+            UserService.addUser("user", "user", "Customer", "User", "adresa", "user@email.com", "0728", "user");
+            assertThat(UserService.getAllUsers()).isNotEmpty();
+            assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+            UserService.checkUserCredentials("user1","user","Customer");
+        });
+    }
+
+    @Test
+    @DisplayName("The password must be correct when login")
+    void testCheckPasswordWhenLogin(){
+        assertThrows(WrongPasswordException.class, () -> {
+            UserService.addUser("user", "user", "Customer", "User", "adresa", "user@email.com", "0728", "user");
+            assertThat(UserService.getAllUsers()).isNotEmpty();
+            assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+            UserService.checkUserCredentials("user","user2","Customer");
+        });
+    }
+
+    @Test
+    @DisplayName("The role must be correct when login")
+    void testCheckRoleWhenLogin(){
+        assertThrows(WrongRoleException.class, () -> {
+            UserService.addUser("user", "user", "Customer", "User", "adresa", "user@email.com", "0728", "user");
+            assertThat(UserService.getAllUsers()).isNotEmpty();
+            assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+            UserService.checkUserCredentials("user","user","Travel Agency");
+        });
+    }
 }
