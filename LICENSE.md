@@ -9,7 +9,7 @@ Explore
 @ancaluiza-capotescu
 fis2021
 /
-SimpleRegistrationExample
+Travel_Agency
 1
 2
 2
@@ -21,8 +21,8 @@ Projects
 Wiki
 Security
 Insights
-SimpleRegistrationExample/LICENSE
-fis2021/SimpleRegistrationExample is licensed under the
+Travel_Agency/LICENSE
+fis2021/Travel_Agency is licensed under the
 
 Apache License 2.0
 A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
@@ -236,7 +236,7 @@ APPENDIX: How to apply the Apache License to your work.
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-Copyright 2021 Mario Rivis
+Copyright 2021 Anca-Luiza Capotescu, Cigmaian Raluca-Madalina
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
