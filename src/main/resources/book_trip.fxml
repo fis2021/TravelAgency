@@ -44,6 +44,6 @@
       <Label layoutX="18.0" layoutY="125.0" text="Please enter the destination and date of the trip you want." />
       <Label layoutX="18.0" layoutY="266.0" text="Please feel free to write in the box below any questions or observations you might have. " />
       <Label layoutX="20.0" layoutY="283.0" text="We will contact you via e-mail/phone as soon as possible." />
-      <Button layoutX="432.0" layoutY="404.0" onAction="#goBackToTripPage" text="Back to Trip Page" />
+      <Button id="goBackToCustomerTripPage" layoutX="432.0" layoutY="404.0" onAction="#goBackToTripPage" text="Back to Trip Page" />
     </children>
 </AnchorPane>

@@ -26,6 +26,7 @@ public class CustomerTripPageController {
     @FXML
     public void initialize() throws IOException {
         ObservableList<String> items = FXCollections.observableArrayList ();
+        tripRepository = AdminTripService.getTripRepository();
         for (Trip trip : tripRepository.find()) {
             items.add(trip.toString());
             trips.setItems(items);
