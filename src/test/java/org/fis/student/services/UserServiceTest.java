@@ -120,12 +120,55 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("When creating account, all fields must be completed")
-    void testCheckAllFieldsCompleted(){
+    @DisplayName("When creating account, username field must be completed")
+    void testCheckUsernameFieldCompleted(){
         assertThrows(EmptyTextfieldsException.class, () -> {
-            UserService.checkEmptyTextfields("","","","","","","");
+            UserService.checkEmptyTextfields("","1","1","1","1","1","1");
         });
     }
+    @Test
+    @DisplayName("When creating account, password field must be completed")
+    void testCheckPasswordFieldCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","","1","1","1","1","1");
+        });
+    }
+    @Test
+    @DisplayName("When creating account, role  must be completed")
+    void testCheckRoleCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","1","","1","1","1","1");
+        });
+    }
+    @Test
+    @DisplayName("When creating account, name field must be completed")
+    void testCheckNameFieldCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","1","1","","1","1","1");
+        });
+    }
+    @Test
+    @DisplayName("When creating account, address field must be completed")
+    void testCheckAddressFieldCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","1","1","1","","1","1");
+        });
+    }
+    @Test
+    @DisplayName("When creating account, email field must be completed")
+    void testCheckEmailFieldCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","1","1","1","1","","1");
+        });
+    }
+    @Test
+    @DisplayName("When creating account, phone field must be completed")
+    void testCheckPhoneFieldCompleted(){
+        assertThrows(EmptyTextfieldsException.class, () -> {
+            UserService.checkEmptyTextfields("1","1","1","1","1","1","");
+        });
+    }
+
 
     @Test
     @DisplayName("Login successfully")
