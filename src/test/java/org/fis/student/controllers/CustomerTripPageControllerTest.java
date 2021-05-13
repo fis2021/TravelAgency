@@ -42,6 +42,9 @@ class CustomerTripPageControllerTest {
     void start(Stage stage) throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-registration";
         FileSystemService.initDirectory();
+        AdminTripService.getDatabase().close();
+        UserService.getDatabase().close();
+        CustomerBookingService.getDatabase().close();
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         AdminTripService.initDatabase();
         AdminTripService.addTrip("Dest1","depdate","retdate","abc","230","34");
@@ -79,6 +82,7 @@ class CustomerTripPageControllerTest {
         robot.clickOn("#goBackToCustomerTripPage");
 
         robot.clickOn("#goToListTripsAction");
+        robot.clickOn("#goBackToCustomerTripPage");
 
     }
 }
