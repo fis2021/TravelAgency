@@ -8,19 +8,22 @@ import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.exceptions.*;
 import org.fis.student.model.Trip;
+import org.fis.student.model.User;
 
+import java.util.List;
 import java.util.Objects;
 
 public class AdminTripService {
 
     private static ObjectRepository<Trip> tripRepository;
+    private static Nitrite database;
 
     public static ObjectRepository<Trip> getTripRepository() {
         return tripRepository;
     }
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("travel-agency-trips.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -115,5 +118,13 @@ public class AdminTripService {
                 throw new DestinationAndDateUsedException();
             }
         }
+    }
+
+    public static Nitrite getDatabase() {
+        return database;
+    }
+
+    public static List<Trip> getAllTrips() {
+        return tripRepository.find().toList();
     }
 }

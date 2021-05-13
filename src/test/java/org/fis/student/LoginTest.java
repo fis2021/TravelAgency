@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import org.fis.student.services.AdminTripService;
 import org.fis.student.services.FileSystemService;
 import org.fis.student.services.UserService;
 import org.junit.jupiter.api.AfterEach;
@@ -31,12 +32,14 @@ class LoginTest {
         FileSystemService.initDirectory();
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         UserService.initDatabase();
+        AdminTripService.initDatabase();
     }
 
     @AfterEach
     void tearDown(){
         System.out.println("After class");
         UserService.getDatabase().close();
+        AdminTripService.getDatabase().close();
     }
 
     @Start
@@ -48,11 +51,41 @@ class LoginTest {
     }
 
     @Test
-    void testLoginAndRegister(FxRobot robot) {
+    void testLoginAndRegisterCustomer(FxRobot robot) {
 
         ///se verifica adaugarea unui user
         robot.clickOn("#goToRegisterButton");
+        robot.clickOn("#registerButton");
+        //exceptia ca nu toate fieldurile suntcompletate
+        assertThat(robot.lookup("#registrationMessage").queryText()).hasText(String.format("You must complete all fields! "));
 
+        //exceptia ca parola e confirmata gresit
+        robot.clickOn("#usernameRegister");
+        robot.write("user");
+        robot.clickOn("#passwordRegister");
+        robot.write("user");
+        robot.clickOn("#password1Register");
+        robot.write("gresit");
+        robot.clickOn("#roleRegister");
+        robot.type(KeyCode.ENTER);
+        robot.clickOn("#nameRegister");
+        robot.write("User");
+        robot.clickOn("#addressRegister");
+        robot.write("Adresa");
+        robot.clickOn("#emailRegister");
+        robot.write("user@email.com");
+        robot.clickOn("#phoneRegister");
+        robot.write("0234");
+
+        robot.clickOn("#registerButton");
+        assertThat(robot.lookup("#registrationMessage").queryText()).hasText("Reconfirm the password (you entered two different ones) ! ");
+
+        //sa se stearga continutul din textfields
+        robot.clickOn("#goBackToLoginButton");
+        robot.clickOn("#goToRegisterButton");
+
+
+        //register corect
         robot.clickOn("#usernameRegister");
         robot.write("user");
         robot.clickOn("#passwordRegister");
@@ -74,9 +107,17 @@ class LoginTest {
         assertThat(robot.lookup("#registrationMessage").queryText()).hasText("Account created successfully!");
         assertThat(UserService.getAllUsers()).size().isEqualTo(1);
 
+
         ///se verifica daca se poate adauga un user cu acelasi username
         robot.clickOn("#registerButton");
         assertThat(robot.lookup("#registrationMessage").queryText()).hasText(String.format("An account with the username %s already exists!", "user"));
+
+        //se verifica ca nu poti adauga 2 useri cu acelasi email
+        robot.clickOn("#usernameRegister");
+        robot.write("2");
+        robot.clickOn("#registerButton");
+        assertThat(robot.lookup("#registrationMessage").queryText()).hasText(String.format("You can't use the same email for more than one account ! "));
+
 
         robot.clickOn("#goBackToLoginButton");
 
@@ -121,6 +162,56 @@ class LoginTest {
         robot.clickOn("#loginButton");
         assertThat(robot.lookup("#loginUsernameMessage").queryText()).hasText("You selected the incorrect role! ");
 
+        robot.clickOn("#goToRegisterButton");
+        robot.clickOn("#goBackToLoginButton");
 
+        robot.clickOn("#usernameLogin");
+        robot.write("user");
+        robot.clickOn("#passwordLogin");
+        robot.write("user");
+        robot.clickOn("#roleLogin");
+        robot.type(KeyCode.ENTER);
+
+        robot.clickOn("#loginButton");
+
+    }
+
+    @Test
+    void testLoginAndRegisterTravelAgency(FxRobot robot) {
+        robot.clickOn("#goToRegisterButton");
+
+        //register corect
+        robot.clickOn("#usernameRegister");
+        robot.write("user");
+        robot.clickOn("#passwordRegister");
+        robot.write("user");
+        robot.clickOn("#password1Register");
+        robot.write("user");
+        robot.clickOn("#roleRegister");
+        robot.type(KeyCode.DOWN);
+        robot.type(KeyCode.ENTER);
+        robot.clickOn("#nameRegister");
+        robot.write("User");
+        robot.clickOn("#addressRegister");
+        robot.write("Adresa");
+        robot.clickOn("#emailRegister");
+        robot.write("user@email.com");
+        robot.clickOn("#phoneRegister");
+        robot.write("0234");
+
+        robot.clickOn("#registerButton");
+        assertThat(robot.lookup("#registrationMessage").queryText()).hasText("Account created successfully!");
+        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+
+        robot.clickOn("#goBackToLoginButton");
+
+        //Login
+        robot.clickOn("#usernameLogin");
+        robot.write("user");
+        robot.clickOn("#passwordLogin");
+        robot.write("user");
+        robot.clickOn("#roleLogin");
+        robot.type(KeyCode.DOWN);
+        robot.type(KeyCode.ENTER);
     }
 }
