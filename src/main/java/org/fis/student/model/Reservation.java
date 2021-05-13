@@ -27,6 +27,7 @@ public class Reservation {
     public String getDepartureDate(){ return trip.getDeparture_date();}
     public String getReturnDate(){ return trip.getReturn_date();}
     public String getUsername(){ return customer.getUsername();}
+    public String getAvailability(){ return availability;}
 
 
 

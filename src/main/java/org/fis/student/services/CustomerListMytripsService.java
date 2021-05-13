@@ -17,6 +17,8 @@ public class CustomerListMytripsService {
 
     public static void checkIfTripWasCancelled(Reservation reservation) {
         int ok = 0;
+        tripRepository = AdminTripService.getTripRepository();
+        reservationRepository = CustomerBookingService.getBookingRepository();
         for (Trip trip : tripRepository.find()) {
             if( Objects.equals(trip,reservation.getTrip())) {
                 ok = 1;
