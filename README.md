@@ -56,7 +56,7 @@ To understand better how to set up a project using JavaFX 11+ and [Maven](https:
 
 You should see an application starting, that looks like this:
 
-<img src="poze/app_start.png" width="250"/>
+<img src="poze/app_start.png" />
 
 You can login if you already have an account, or you can create one by pressing the button "Create one here".
 
@@ -74,7 +74,7 @@ Behind the scenes, the app actually saved **your account** in the database, encr
 Download the jar and run `java -jar --module-path "PATH_TO_FX\javafx-sdk-15\lib" --add-modules javafx.controls,javafx.fxml "PATH_TO_FX\javafx-sdk-15\lib\nitrite-explorer-3.4.3.jar"`. 
 You should see a window like this open:
 
-<img src="poze/nitrite_start.png" width="250"/>
+<img src="poze/nitrite_start.png" />
 
 Choose the `$HOME/.travel-agency-users/travel-agency-users.db` and add `test` as both the username, and the password to access the database, then click `Open`.
 
