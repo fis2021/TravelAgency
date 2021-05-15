@@ -23,6 +23,13 @@ public class Reservation {
     public User getCustomer(){ return customer;}
     public String getMentions(){ return mentions;}
     public void setAvailabilityOnCANCELLED(){ this.availability = "CANCELLED"; }
+    public String getDestination(){ return trip.getDestination();}
+    public String getDepartureDate(){ return trip.getDeparture_date();}
+    public String getReturnDate(){ return trip.getReturn_date();}
+    public String getUsername(){ return customer.getUsername();}
+    public String getAvailability(){ return availability;}
+
+
 
     public String toString() {
         if( customer!=null && trip!=null)

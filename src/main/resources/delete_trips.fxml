@@ -28,16 +28,16 @@
         </Pane>
         <Label layoutX="56.0" layoutY="217.0" text="Destination:" />
         <Label layoutX="56.0" layoutY="285.0" text="Departure date:" />
-        <Button layoutX="456.0" layoutY="365.0" onAction="#handleDeleteTripAction" text="Delete trip" />
+        <Button id="deleteTrip" layoutX="456.0" layoutY="365.0" onAction="#handleDeleteTripAction" text="Delete trip" />
         <Label layoutX="344.0" layoutY="285.0" text="Return date:" />
-        <TextField fx:id="destinationField" layoutX="187.0" layoutY="213.0" prefHeight="26.0" prefWidth="130.0" />
-        <TextField fx:id="departure_dateField" layoutX="187.0" layoutY="281.0" prefHeight="26.0" prefWidth="130.0" />
-        <TextField fx:id="return_dateField" layoutX="427.0" layoutY="281.0" prefHeight="26.0" prefWidth="130.0" />
-        <Text fx:id="delete_tripMessage" layoutX="56.0" layoutY="355.0" text="  " />
+        <TextField id="deleteDestinationField" fx:id="destinationField" layoutX="187.0" layoutY="213.0" prefHeight="26.0" prefWidth="130.0" />
+        <TextField id="deleteDepartureDateField" fx:id="departure_dateField" layoutX="187.0" layoutY="281.0" prefHeight="26.0" prefWidth="130.0" />
+        <TextField id="deleteReturnDateField" fx:id="return_dateField" layoutX="427.0" layoutY="281.0" prefHeight="26.0" prefWidth="130.0" />
+        <Text id="delete_tripMessage" fx:id="delete_tripMessage" layoutX="56.0" layoutY="355.0" text="  " />
         <Label layoutX="56.0" layoutY="160.0" text="Which trip would you like to delete?">
             <font>
                 <Font name="System Bold Italic" size="14.0" />
             </font></Label>
-        <Button layoutX="438.0" layoutY="403.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
+        <Button id="deleteGoBackToAdminTripPage" layoutX="438.0" layoutY="403.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
     </children>
 </AnchorPane>

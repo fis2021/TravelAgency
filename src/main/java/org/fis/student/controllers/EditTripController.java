@@ -51,6 +51,7 @@ public class EditTripController {
         }
     }
 
+    @FXML
     public void goBackToTripPageAction(javafx.event.ActionEvent addTrip) throws Exception{
         Parent adminTripPageInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
         Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;

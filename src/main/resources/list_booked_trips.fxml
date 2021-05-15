@@ -31,6 +31,6 @@
                 <Font size="25.0" />
             </font>
         </Text>
-        <Button layoutX="445.0" layoutY="93.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
+        <Button id="goBackToAdminTripPage" layoutX="445.0" layoutY="93.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
     </children>
 </AnchorPane>

@@ -6,17 +6,21 @@ import org.fis.student.exceptions.*;
 import org.fis.student.model.Trip;
 import org.fis.student.model.User;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        FileSystemService.initDirectory();
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("travel-agency-users.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -54,7 +58,7 @@ public class UserService {
         return "";
     }
 
-    private static void checkEmptyTextfields(String username, String password, String role, String name, String address, String email, String phone) throws EmptyTextfieldsException{
+    public static void checkEmptyTextfields(String username, String password, String role, String name, String address, String email, String phone) throws EmptyTextfieldsException{
         if( Objects.equals(username,""))
             throw new EmptyTextfieldsException();
         else if( Objects.equals(password,""))
@@ -70,17 +74,17 @@ public class UserService {
         else if( Objects.equals(phone,""))
             throw new EmptyTextfieldsException();
     }
-    private static void checkPasswordConfirmation(String password, String password2) throws WrongPasswordConfirmationException {
+    public static void checkPasswordConfirmation(String password, String password2) throws WrongPasswordConfirmationException {
         if( !Objects.equals(password,password2))
             throw new WrongPasswordConfirmationException();
     }
-    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
+    public static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
     }
-    private static void checkUsedEmail(String email) throws EmailAlreadyUsedException{
+    public static void checkUsedEmail(String email) throws EmailAlreadyUsedException{
         for (User user : userRepository.find()) {
             if (Objects.equals(email, user.getEmail()))
                 throw new EmailAlreadyUsedException();
@@ -107,7 +111,7 @@ public class UserService {
 
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -128,5 +132,12 @@ public class UserService {
         return md;
     }
 
+    public static Nitrite getDatabase() {
+        return database;
+    }
 
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
+    }
 }

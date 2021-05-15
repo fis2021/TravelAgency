@@ -28,14 +28,14 @@
         </Pane>
         <Label layoutX="64.0" layoutY="156.0" text="Destination:" />
         <Label layoutX="46.0" layoutY="202.0" text="Departure date:" />
-        <Button layoutX="452.0" layoutY="365.0" onAction="#handleBookTripAction" text="Book the trip" />
+        <Button id="BookTripButton" layoutX="452.0" layoutY="365.0" onAction="#handleBookTripAction" text="Book the trip" />
         <Label layoutX="339.0" layoutY="202.0" text="Return date:" />
         <Label layoutX="14.0" layoutY="315.0" text="Observations/Questions:" />
-        <TextField fx:id="destinationField" layoutX="159.0" layoutY="151.0" prefHeight="26.0" prefWidth="130.0" />
-        <TextField fx:id="mentionsField" layoutX="187.0" layoutY="310.0" prefHeight="54.0" prefWidth="140.0" />
-        <TextField fx:id="departure_dateField" layoutX="159.0" layoutY="198.0" prefHeight="26.0" prefWidth="130.0" />
-        <TextField fx:id="return_dateField" layoutX="429.0" layoutY="198.0" prefHeight="26.0" prefWidth="130.0" />
-        <Text fx:id="bookTripMessage" layoutX="14.0" layoutY="400.0" text="  " />
+        <TextField fx:id="destinationField" id="destinationFieldBooking" layoutX="159.0" layoutY="151.0" prefHeight="26.0" prefWidth="130.0" />
+        <TextField fx:id="mentionsField" id="mentionsFieldBooking" layoutX="187.0" layoutY="310.0" prefHeight="54.0" prefWidth="140.0" />
+        <TextField fx:id="departure_dateField" id="departureDateFieldBooking" layoutX="159.0" layoutY="198.0" prefHeight="26.0" prefWidth="130.0" />
+        <TextField fx:id="return_dateField" id="returnDateFieldBooking" layoutX="429.0" layoutY="198.0" prefHeight="26.0" prefWidth="130.0" />
+        <Text fx:id="bookTripMessage" id="bookTripMessage" layoutX="14.0" layoutY="400.0" text="  " />
       <Label layoutX="17.0" layoutY="95.0" text="Which trip would you like to book? ">
          <font>
             <Font name="System Bold Italic" size="17.0" />
@@ -44,6 +44,6 @@
       <Label layoutX="18.0" layoutY="125.0" text="Please enter the destination and date of the trip you want." />
       <Label layoutX="18.0" layoutY="266.0" text="Please feel free to write in the box below any questions or observations you might have. " />
       <Label layoutX="20.0" layoutY="283.0" text="We will contact you via e-mail/phone as soon as possible." />
-      <Button layoutX="432.0" layoutY="404.0" onAction="#goBackToTripPage" text="Back to Trip Page" />
+      <Button id="goBackToCustomerTripPage" layoutX="432.0" layoutY="404.0" onAction="#goBackToTripPage" text="Back to Trip Page" />
     </children>
 </AnchorPane>

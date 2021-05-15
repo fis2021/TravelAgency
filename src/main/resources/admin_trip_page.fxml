@@ -25,15 +25,15 @@
                 </Text>
             </children>
         </Pane>
-        <Button layoutX="210.0" layoutY="93.0" onAction="#goToAddTripAction" text="Add trip" />
+        <Button id="goToAddTripAction" layoutX="210.0" layoutY="93.0" onAction="#goToAddTripAction" text="Add trip" />
       <ListView fx:id="trips" layoutX="38.0" layoutY="141.0" prefHeight="286.0" prefWidth="516.0" />
       <Text id="title-text" layoutX="38.0" layoutY="115.0" text="Trips">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button layoutX="287.0" layoutY="93.0" onAction="#goToEditTripAction" text="Edit trip" />
-        <Button layoutX="362.0" layoutY="93.0" onAction="#goToDeleteTripAction" text="Delete trip" />
-      <Button layoutX="448.0" layoutY="93.0" onAction="#goToBookedTripsAction" text="See booked trips" />
+      <Button id="goToEditTripAction" layoutX="287.0" layoutY="93.0" onAction="#goToEditTripAction" text="Edit trip" />
+        <Button id="goToDeleteTripAction" layoutX="362.0" layoutY="93.0" onAction="#goToDeleteTripAction" text="Delete trip" />
+      <Button id="goToBookedTripsAction" layoutX="448.0" layoutY="93.0" onAction="#goToBookedTripsAction" text="See booked trips" />
     </children>
 </AnchorPane>

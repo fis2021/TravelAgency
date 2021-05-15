@@ -44,9 +44,10 @@ public class AddTripController {
         }
     }
 
+    @FXML
     public void goBackToTripPageAction(javafx.event.ActionEvent addTrip) throws Exception{
         Parent adminTripPageInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
-        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();
         window.setTitle("Trips");
         window.setScene(new Scene(adminTripPageInterface, 600, 460));
         window.show();

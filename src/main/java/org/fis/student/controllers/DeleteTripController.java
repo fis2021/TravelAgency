@@ -23,6 +23,7 @@ public class DeleteTripController {
     @FXML
     private Text delete_tripMessage;
 
+    @FXML
     public void handleDeleteTripAction() {
         try {
             AdminTripService.deleteTrip(destinationField.getText(), departure_dateField.getText(), return_dateField.getText());
@@ -34,6 +35,7 @@ public class DeleteTripController {
         }
     }
 
+    @FXML
     public void goBackToTripPageAction(javafx.event.ActionEvent addTrip) throws Exception{
         Parent adminTripPageInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
         Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;

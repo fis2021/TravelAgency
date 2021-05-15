@@ -8,19 +8,22 @@ import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.fis.student.exceptions.*;
 import org.fis.student.model.Trip;
+import org.fis.student.model.User;
 
+import java.util.List;
 import java.util.Objects;
 
 public class AdminTripService {
 
     private static ObjectRepository<Trip> tripRepository;
+    private static Nitrite database;
 
     public static ObjectRepository<Trip> getTripRepository() {
         return tripRepository;
     }
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("travel-agency-trips.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -71,7 +74,7 @@ public class AdminTripService {
         tripRepository.remove(eq("destination",destination));
     }
 
-    private static void checkEmptyTextFieldsForEdit(String destination, String departure_date, String return_date) throws EmptyTextfieldsException{
+    public static void checkEmptyTextFieldsForEdit(String destination, String departure_date, String return_date) throws EmptyTextfieldsException{
         if (Objects.equals(destination,""))
             throw new EmptyTextfieldsException();
         else if (Objects.equals(departure_date,""))
@@ -80,7 +83,7 @@ public class AdminTripService {
             throw new EmptyTextfieldsException();
     }
 
-    private static void checkTripExists(String destination, String departure_date, String return_date) throws DestinationAndDateExistsException {
+    public static void checkTripExists(String destination, String departure_date, String return_date) throws DestinationAndDateExistsException {
 
         int ok = 0;
 
@@ -94,7 +97,7 @@ public class AdminTripService {
 
     }
 
-    private static void checkEmptyTextFields(String destination, String departure_date, String return_date, String description, String price, String number_of_free_spots) throws EmptyTextfieldsException{
+   public static void checkEmptyTextFields(String destination, String departure_date, String return_date, String description, String price, String number_of_free_spots) throws EmptyTextfieldsException{
         if (Objects.equals(destination,""))
             throw new EmptyTextfieldsException();
         else if (Objects.equals(departure_date,""))
@@ -115,5 +118,13 @@ public class AdminTripService {
                 throw new DestinationAndDateUsedException();
             }
         }
+    }
+
+    public static Nitrite getDatabase() {
+        return database;
+    }
+
+    public static List<Trip> getAllTrips() {
+        return tripRepository.find().toList();
     }
 }
