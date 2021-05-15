@@ -31,6 +31,8 @@ public class AdminTripPageController {
             trips.setItems(items);
         }
     }
+
+    @FXML
     public void goToAddTripAction(javafx.event.ActionEvent addTrip) throws Exception{
         Parent addTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("add_trips.fxml"));
         Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
@@ -39,26 +41,29 @@ public class AdminTripPageController {
         window.show();
     }
 
-    public void goToEditTripAction(javafx.event.ActionEvent addTrip) throws Exception{
+    @FXML
+    public void goToEditTripAction(javafx.event.ActionEvent editTrip) throws Exception{
         Parent editTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("edit_trips.fxml"));
-        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        Stage window = (Stage) ((Node) editTrip.getSource()).getScene().getWindow();;
         window.setTitle("Edit Trip");
         window.setScene(new Scene(editTripInterface, 600, 460));
         window.show();
     }
 
-    public void goToDeleteTripAction(javafx.event.ActionEvent addTrip) throws Exception{
+    @FXML
+    public void goToDeleteTripAction(javafx.event.ActionEvent deleteTrip) throws Exception{
         Parent deleteTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("delete_trips.fxml"));
-        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
+        Stage window = (Stage) ((Node) deleteTrip.getSource()).getScene().getWindow();;
         window.setTitle("Delete Trip");
         window.setScene(new Scene(deleteTripInterface, 600, 460));
         window.show();
     }
 
-    public void goToBookedTripsAction(javafx.event.ActionEvent addTrip) throws Exception{
+    @FXML
+    public void goToBookedTripsAction(javafx.event.ActionEvent bookedTrip) throws Exception{
         Parent deleteTripInterface = FXMLLoader.load(getClass().getClassLoader().getResource("list_booked_trips.fxml"));
-        Stage window = (Stage) ((Node) addTrip.getSource()).getScene().getWindow();;
-        window.setTitle("Delete Trip");
+        Stage window = (Stage) ((Node) bookedTrip.getSource()).getScene().getWindow();;
+        window.setTitle("Booked Trips");
         window.setScene(new Scene(deleteTripInterface, 600, 460));
         window.show();
     }
