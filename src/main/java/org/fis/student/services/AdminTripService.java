@@ -74,7 +74,7 @@ public class AdminTripService {
         tripRepository.remove(eq("destination",destination));
     }
 
-    private static void checkEmptyTextFieldsForEdit(String destination, String departure_date, String return_date) throws EmptyTextfieldsException{
+    public static void checkEmptyTextFieldsForEdit(String destination, String departure_date, String return_date) throws EmptyTextfieldsException{
         if (Objects.equals(destination,""))
             throw new EmptyTextfieldsException();
         else if (Objects.equals(departure_date,""))
@@ -83,7 +83,7 @@ public class AdminTripService {
             throw new EmptyTextfieldsException();
     }
 
-    private static void checkTripExists(String destination, String departure_date, String return_date) throws DestinationAndDateExistsException {
+    public static void checkTripExists(String destination, String departure_date, String return_date) throws DestinationAndDateExistsException {
 
         int ok = 0;
 
@@ -97,7 +97,7 @@ public class AdminTripService {
 
     }
 
-    private static void checkEmptyTextFields(String destination, String departure_date, String return_date, String description, String price, String number_of_free_spots) throws EmptyTextfieldsException{
+   public static void checkEmptyTextFields(String destination, String departure_date, String return_date, String description, String price, String number_of_free_spots) throws EmptyTextfieldsException{
         if (Objects.equals(destination,""))
             throw new EmptyTextfieldsException();
         else if (Objects.equals(departure_date,""))
