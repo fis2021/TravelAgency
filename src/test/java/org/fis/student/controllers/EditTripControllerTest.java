@@ -55,19 +55,6 @@ class EditTripControllerTest {
         robot.clickOn("#editTrip");
         assertThat(robot.lookup("#edit_tripMessage").queryText()).hasText(String.format("You must complete all fields! "));
 
-        //Destination and date doesn't exist
-        /*robot.clickOn("#editDestinationField1");
-        robot.write("Gresit");
-        robot.clickOn("#editDepartureDateField");
-        robot.write("1");
-        robot.clickOn("#editReturnDateField1");
-        robot.write("2");
-        robot.clickOn("#editTrip");
-        assertThat(robot.lookup("#edit_tripMessage").queryText()).hasText(String.format("A trip with the given information doesn't exist. Reenter the information!"));
-
-        robot.clickOn("#goBackToAdminTripPage");
-        robot.clickOn("#goToEditTripAction");*/
-
         //Edit the trip
         robot.clickOn("#editDestinationField1");
         robot.write("Dest1");
@@ -79,6 +66,5 @@ class EditTripControllerTest {
         robot.write("300");
         robot.clickOn("#editTrip");
         assertThat(robot.lookup("#edit_tripMessage").queryText()).hasText(String.format("Trip edited successfully!"));
-        //robot.clickOn("#editGoBackToAdminTripPage");
     }
 }
