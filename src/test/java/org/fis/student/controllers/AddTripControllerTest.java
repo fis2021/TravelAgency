@@ -32,13 +32,14 @@ class AddTripControllerTest {
         AdminTripService.initDatabase();
         //AdminTripService.addTrip("Dest1","depdate","retdate","abc","230","34");
         UserService.initDatabase();
+        CustomerBookingService.initDatabase();
     }
 
     @AfterEach
     void tearDown(){
-
         AdminTripService.getDatabase().close();
         UserService.getDatabase().close();
+        CustomerBookingService.getDatabase().close();
     }
 
     @Start
@@ -75,6 +76,12 @@ class AddTripControllerTest {
         robot.clickOn("#addTrip");
         assertThat(robot.lookup("#add_tripMessage").queryText()).hasText(String.format("Trip added successfully !"));
 
+        robot.clickOn("#goBackToAdminTripPage");
+        robot.clickOn("#goToEditTripAction");
+        robot.clickOn("#editGoBackToAdminTripPage");
+        robot.clickOn("#goToDeleteTripAction");
+        robot.clickOn("#deleteGoBackToAdminTripPage");
+        robot.clickOn("#goToBookedTripsAction");
         robot.clickOn("#goBackToAdminTripPage");
         robot.clickOn("#goToAddTripAction");
 
