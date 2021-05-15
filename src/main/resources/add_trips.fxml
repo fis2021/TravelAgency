@@ -29,22 +29,22 @@
         <Label layoutX="56.0" layoutY="133.0" text="Destination:" />
         <Label layoutX="56.0" layoutY="176.0" text="Departure date:" />
         <Label layoutX="56.0" layoutY="368.0" text="Number of free spots:" />
-        <Button layoutX="456.0" layoutY="364.0" onAction="#handleAddTripAction" text="Add trip" />
+        <Button id="addTrip" layoutX="456.0" layoutY="364.0" onAction="#handleAddTripAction" text="Add trip" />
       <Label layoutX="344.0" layoutY="176.0" text="Return date:" />
       <Label layoutX="56.0" layoutY="217.0" text="Description:" />
       <Label layoutX="56.0" layoutY="314.0" text="Price:" />
-      <TextField fx:id="destinationField" layoutX="187.0" layoutY="129.0" prefHeight="26.0" prefWidth="130.0" />
-      <TextField fx:id="number_of_free_spotsField" layoutX="187.0" layoutY="363.0" prefHeight="26.0" prefWidth="130.0" />
-      <TextField fx:id="descriptionField" layoutX="187.0" layoutY="213.0" prefHeight="75.0" prefWidth="130.0" />
-      <TextField fx:id="priceField" layoutX="187.0" layoutY="310.0" prefHeight="26.0" prefWidth="130.0" />
-      <TextField fx:id="departure_dateField" layoutX="187.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
-      <TextField fx:id="return_dateField" layoutX="433.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
-        <Text fx:id="add_tripMessage" layoutX="56.0" layoutY="420.0" text="  " />
+      <TextField id="addDestinationField" fx:id="destinationField" layoutX="187.0" layoutY="129.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField id="addNumberOfFreeSpotsField" fx:id="number_of_free_spotsField" layoutX="187.0" layoutY="363.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField id="addDescriptionField" fx:id="descriptionField" layoutX="187.0" layoutY="213.0" prefHeight="75.0" prefWidth="130.0" />
+      <TextField id="addPriceField" fx:id="priceField" layoutX="187.0" layoutY="310.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField id="addDepartureDateField" fx:id="departure_dateField" layoutX="187.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField id="addReturnDateField" fx:id="return_dateField" layoutX="433.0" layoutY="171.0" prefHeight="26.0" prefWidth="130.0" />
+        <Text id="add_tripMessage" fx:id="add_tripMessage" layoutX="56.0" layoutY="420.0" text="  " />
       <Label layoutX="56.0" layoutY="97.0" text="Enter the information below:">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="432.0" layoutY="406.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
+      <Button id="goBackToAdminTripPage" layoutX="432.0" layoutY="406.0" onAction="#goBackToTripPageAction" text="Back to Trip Page" />
     </children>
 </AnchorPane>
